@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>執行自動腳本</title>
+    <title>停止所有自動腳本</title>
 <?php
 
 require_once 'storage/token.php';
@@ -31,7 +31,9 @@ else
 <body>
     <pre><?php
 
-$output = recoverCliOutput(shell_exec('php /home/wujidadi/MyKiritoCommands/AutoBatch'));
+require_once 'lib/helpers.php';
+
+$output = recoverCliOutput(shell_exec('php /home/wujidadi/MyKiritoCommands/KillAutoProcess'));
 echo $output
 
 ?></pre>

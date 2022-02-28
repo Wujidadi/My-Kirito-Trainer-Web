@@ -5,6 +5,26 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>MyKirito Trainer</title>
+<?php
+
+require_once 'storage/token.php';
+
+if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_USER'] !== HTTP_USERNAME || $_SERVER['PHP_AUTH_PW'] !== HTTP_PASSWORD)
+{
+    header('www-authenticate: Basic realm="Wujidadi\'s MyKirito Trainer"');
+    header($_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized');
+
+?>
+</head>
+<body>
+<?php
+
+    exit;
+}
+else
+{
+
+?>
     <style>
         button, input, select {
             margin-bottom: 5px;
@@ -36,6 +56,9 @@
         玩家：<input type="input" id="player-to-stop"><br />
     </fieldset>
     <fieldset>
+        <button class="feature" id="kill">停止所有自動腳本</button><br />
+    </fieldset>
+    <fieldset>
         <button class="feature" id="view-log">列出玩家日誌</button><br />
         玩家：<input type="input" id="player-to-view-log"><br />
         日誌種類：<select id="log-type">
@@ -58,6 +81,7 @@
         const btnRun = document.querySelector('#run');
         const btnStop = document.querySelector('#stop');
         const inputPlayerToStop = document.querySelector('#player-to-stop');
+        const btnKill = document.querySelector('#kill');
         const btnViewLog = document.querySelector('#view-log');
         const inputPlayerToViewLog = document.querySelector('#player-to-view-log');
         const selectLogType = document.querySelector('#log-type');
@@ -117,6 +141,10 @@
             location.href = `stop-player-auto-process?p=${playerToStop}`;
         }
 
+        btnKill.addEventListener('click', function() {
+            location.href = 'kill-auto-process';
+        });
+
         btnViewLog.addEventListener('click', function() {
             viewPlayerLog();
         });
@@ -140,6 +168,9 @@
             localStorage.setItem('LogLine', logLine);
             location.href = `view-player-log?p=${playerToViewLog}&t=${logType}&v=${logLevel}&d=${logDate}&l=${logLine}`;
         }
-    </script>
-</body>
+    </script><?php
+
+}
+
+?></body>
 </html>
