@@ -31,7 +31,7 @@ else
         }
         button.feature {
             font-size: 16px;
-            width: 225px;
+            width: 250px;
         }
         input {
             text-align: center;
@@ -40,7 +40,10 @@ else
 </head>
 <body>
     <fieldset>
-        <button class="feature" id="config">設定</button><br />
+        <button class="feature" id="token">玩家令牌設定</button><br />
+    </fieldset>
+    <fieldset>
+        <button class="feature" id="config">自動行動與挑戰設定</button><br />
     </fieldset>
     <fieldset>
         <button class="feature" id="ps">檢查進程</button><br />
@@ -50,6 +53,10 @@ else
     </fieldset>
     <fieldset>
         <button class="feature" id="run">執行自動腳本</button><br />
+    </fieldset>
+    <fieldset>
+        <button class="feature" id="status">查詢特定玩家當前狀態總覽</button><br />
+        玩家：<input type="input" id="player-to-get-status"><br />
     </fieldset>
     <fieldset>
         <button class="feature" id="stop">停止特定玩家的自動腳本</button><br />
@@ -75,10 +82,13 @@ else
     </fieldset>
 
     <script>
+        const btnToken = document.querySelector('#token');
         const btnConf = document.querySelector('#config');
         const btnPs = document.querySelector('#ps');
         const btnLs = document.querySelector('#ls');
         const btnRun = document.querySelector('#run');
+        const btnStatus = document.querySelector('#status');
+        const inputPlayerToGetStatus = document.querySelector('#player-to-get-status');
         const btnStop = document.querySelector('#stop');
         const inputPlayerToStop = document.querySelector('#player-to-stop');
         const btnKill = document.querySelector('#kill');
@@ -88,6 +98,8 @@ else
         const selectLogLevel = document.querySelector('#log-level');
         const inputLogDate = document.querySelector('#log-date');
         const inputLogLine = document.querySelector('#log-line');
+
+        inputPlayerToGetStatus.value = localStorage.getItem('PlayerToGetStatus');
 
         inputPlayerToStop.value = localStorage.getItem('PlayerToStop');
 
@@ -111,6 +123,10 @@ else
             return `${year}-${month}-${day}`;
         }
 
+        btnToken.addEventListener('click', function() {
+            location.href = 'token';
+        });
+
         btnConf.addEventListener('click', function() {
             location.href = 'config';
         });
@@ -126,6 +142,20 @@ else
         btnRun.addEventListener('click', function() {
             location.href = 'auto-batch';
         });
+
+        btnStatus.addEventListener('click', function() {
+            getPlayerStatus();
+        });
+        inputPlayerToGetStatus.addEventListener('keypress', function(event) {
+            if (event.keyCode == 13) {
+                getPlayerStatus();
+            }
+        });
+        function getPlayerStatus() {
+            const playerToGetStatus = inputPlayerToGetStatus.value;
+            localStorage.setItem('PlayerToGetStatus', playerToGetStatus);
+            location.href = `get-player-status?p=${playerToGetStatus}`;
+        }
 
         btnStop.addEventListener('click', function() {
             stopAutoProcessesByPlayer();

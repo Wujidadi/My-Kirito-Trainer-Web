@@ -10,7 +10,7 @@ if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SE
 }
 else
 {
-    $file = '/home/wujidadi/MyKiritoCommands/configs/MovementByPlayer.json';
+    $file = '/home/wujidadi/workspaces/MyKirito/storage/configs/Players.json';
     $json = file_get_contents($file);
     $page = <<<HTML
     <!DOCTYPE html>
@@ -19,7 +19,7 @@ else
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>自動行動與挑戰設定</title>
+        <title>玩家 Token 設定</title>
         <style>
             * {
                 box-sizing: border-box;
@@ -63,7 +63,7 @@ else
             btnSubmit.addEventListener('click', function() {
                 if (confirm('確定覆寫設定？')) {
                     const jsonConfig = txtConfig.value;
-                    fetch('api/set-config', {
+                    fetch('api/set-token', {
                         method: 'POST',
                         headers: {
                             'content-type': 'application/json'
