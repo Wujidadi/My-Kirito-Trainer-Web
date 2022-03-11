@@ -63,7 +63,7 @@ $logType = $_GET['t'];
 $logLevel = $_GET['v'];
 $logDate = $_GET['d'];
 $logLine = $_GET['l'];
-$output = recoverCliOutput(shell_exec("php /home/wujidadi/MyKiritoCommands/ViewPlayerLog --player={$player} --type={$logType} --level={$logLevel} --date={$logDate} --line={$logLine}"));
+$output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/ViewPlayerLog --player={$player} --type={$logType} --level={$logLevel} --date={$logDate} --line={$logLine}"));
 echo $output;
 
 ?></pre>

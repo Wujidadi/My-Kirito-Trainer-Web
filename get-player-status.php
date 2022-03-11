@@ -59,7 +59,7 @@ else
     <pre id="command-output"><?php
 
 $player = $_GET['p'];
-$output = recoverCliOutput(shell_exec("php /home/wujidadi/workspaces/MyKirito/cli/PersonalOverview.php --player={$player} --output"));
+$output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php /home/wujidadi/workspaces/MyKirito/cli/PersonalOverview.php --player={$player} --output"));
 echo $output;
 
 ?></pre>

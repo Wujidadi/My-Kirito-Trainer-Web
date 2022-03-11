@@ -58,7 +58,7 @@ else
 <body>
     <pre id="command-output"><?php
 
-$output = recoverCliOutput(shell_exec('php /home/wujidadi/MyKiritoCommands/KillAutoProcess'));
+$output = recoverCliOutput(shell_exec('export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/KillAutoProcess'));
 echo $output;
 
 ?></pre>

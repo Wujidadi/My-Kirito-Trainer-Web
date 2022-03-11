@@ -59,7 +59,7 @@ else
     <pre id="command-output"><?php
 
 $player = $_GET['p'];
-$output = recoverCliOutput(shell_exec("php /home/wujidadi/MyKiritoCommands/StopPlayerAutoProcess --player={$player}"));
+$output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/StopPlayerAutoProcess --player={$player}"));
 echo $output;
 
 ?></pre>
