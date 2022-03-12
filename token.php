@@ -73,6 +73,9 @@ else
                     .then(response => response.text())
                     .then(response => {
                         alert(response);
+                        if (response === '設定已覆寫！') {
+                            location.href = '/';
+                        }
                     })
                     .catch(error => {
                         alert(error);

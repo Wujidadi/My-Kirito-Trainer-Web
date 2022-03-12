@@ -40,30 +40,33 @@ else
 </head>
 <body>
     <fieldset>
-        <button class="feature" id="token">玩家令牌設定</button><br />
+        <button class="feature" id="token">玩家令牌設定</button>
     </fieldset>
     <fieldset>
-        <button class="feature" id="config">自動行動與挑戰設定</button><br />
+        <button class="feature" id="config">自動行動與挑戰設定</button>
     </fieldset>
     <fieldset>
-        <button class="feature" id="ps">檢查進程</button><br />
+        <button class="feature" id="ps">檢查進程</button>
     </fieldset>
     <fieldset>
-        <button class="feature" id="ls">列出檔案鎖</button><br />
+        <button class="feature" id="ls">列出檔案鎖</button>
     </fieldset>
     <fieldset>
-        <button class="feature" id="run">執行自動腳本</button><br />
+        <button class="feature" id="run">執行自動腳本</button>
     </fieldset>
     <fieldset>
         <button class="feature" id="status">查詢特定玩家當前狀態總覽</button><br />
-        玩家：<input type="input" id="player-to-get-status"><br />
+        玩家：<input type="input" id="player-to-get-status">
     </fieldset>
     <fieldset>
         <button class="feature" id="stop">停止特定玩家的自動腳本</button><br />
-        玩家：<input type="input" id="player-to-stop"><br />
+        玩家：<input type="input" id="player-to-stop">
     </fieldset>
     <fieldset>
-        <button class="feature" id="kill">停止所有自動腳本</button><br />
+        <button class="feature" id="reincarnate">令特定玩家轉生</button>
+    </fieldset>
+    <fieldset>
+        <button class="feature" id="kill">停止所有自動腳本</button>
     </fieldset>
     <fieldset>
         <button class="feature" id="view-log">列出玩家日誌</button><br />
@@ -91,6 +94,7 @@ else
         const inputPlayerToGetStatus = document.querySelector('#player-to-get-status');
         const btnStop = document.querySelector('#stop');
         const inputPlayerToStop = document.querySelector('#player-to-stop');
+        const btnReincarnate = document.querySelector('#reincarnate');
         const btnKill = document.querySelector('#kill');
         const btnViewLog = document.querySelector('#view-log');
         const inputPlayerToViewLog = document.querySelector('#player-to-view-log');
@@ -170,6 +174,10 @@ else
             localStorage.setItem('PlayerToStop', playerToStop);
             location.href = `stop-player-auto-process?p=${playerToStop}`;
         }
+
+        btnReincarnate.addEventListener('click', function() {
+            location.href = 'reincarnate';
+        });
 
         btnKill.addEventListener('click', function() {
             location.href = 'kill-auto-process';
