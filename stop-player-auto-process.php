@@ -60,7 +60,7 @@ else
 
 $player = $_GET['p'];
 $output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/StopPlayerAutoProcess --player={$player}"));
-echo $output;
+echo rtrim($output);
 
 ?></pre>
     <div id="button-area">

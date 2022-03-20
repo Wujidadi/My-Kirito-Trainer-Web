@@ -59,7 +59,7 @@ else
     <pre id="command-output"><?php
 
 $output = recoverCliOutput(shell_exec('export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/KillAutoProcess'));
-echo $output;
+echo rtrim($output);
 
 ?></pre>
     <div id="button-area">
