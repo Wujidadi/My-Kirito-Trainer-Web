@@ -84,11 +84,14 @@ else
             });
 
             btnBack.addEventListener('click', function() {
-                location.href = '/';
+                if (confirm('確定返回？')) {
+                    location.href = '/';
+                }
             });
         </script>
     </body>
     </html>
     HTML;
+
     echo $page;
 }

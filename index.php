@@ -66,7 +66,7 @@ else
             <button class="feature" id="ls">列出檔案鎖</button>
         </fieldset>
         <fieldset>
-            <button class="feature" id="run">執行自動腳本</button>
+            <button class="feature" id="run">執行所有自動腳本</button>
         </fieldset>
         <fieldset>
             <button class="feature" id="status">查詢特定玩家當前狀態總覽</button><br />
@@ -177,7 +177,9 @@ else
             });
 
             btnRun.addEventListener('click', function() {
-                location.href = 'auto-batch';
+                if (confirm('確定執行所有自動腳本？')) {
+                    location.href = 'auto-batch';
+                }
             });
 
             btnStatus.addEventListener('click', function() {
@@ -189,12 +191,14 @@ else
             //     }
             // });
             function getPlayerStatus() {
-                if (inputPlayerToGetStatus.value !== nullMark) {
-                    const playerToGetStatus = inputPlayerToGetStatus.value;
-                    localStorage.setItem('PlayerToGetStatus', playerToGetStatus);
-                    location.href = `get-player-status?p=\${playerToGetStatus}`;
-                } else {
-                    alert('須選擇玩家暱稱！');
+                const playerToGetStatus = inputPlayerToGetStatus.value;
+                if (confirm(`確定查詢玩家【\${playerToGetStatus}】當前的狀態總覽？`)) {
+                    if (playerToGetStatus !== nullMark) {
+                        localStorage.setItem('PlayerToGetStatus', playerToGetStatus);
+                        location.href = `get-player-status?p=\${playerToGetStatus}`;
+                    } else {
+                        alert('須選擇玩家暱稱！');
+                    }
                 }
             }
 
@@ -207,12 +211,14 @@ else
             //     }
             // });
             function stopAutoProcessesByPlayer() {
-                if (inputPlayerToStop.value !== nullMark) {
-                    const playerToStop = inputPlayerToStop.value;
-                    localStorage.setItem('PlayerToStop', playerToStop);
-                    location.href = `stop-player-auto-process?p=\${playerToStop}`;
-                } else {
-                    alert('須選擇玩家暱稱！');
+                const playerToStop = inputPlayerToStop.value;
+                if (confirm(`確定停止玩家【\${playerToStop}】的自動腳本？`)) {
+                    if (playerToStop !== nullMark) {
+                        localStorage.setItem('PlayerToStop', playerToStop);
+                        location.href = `stop-player-auto-process?p=\${playerToStop}`;
+                    } else {
+                        alert('須選擇玩家暱稱！');
+                    }
                 }
             }
 
@@ -221,7 +227,9 @@ else
             });
 
             btnKill.addEventListener('click', function() {
-                location.href = 'kill-auto-process';
+                if (confirm('確定停止所有自動腳本？')) {
+                    location.href = 'kill-auto-process';
+                }
             });
 
             btnViewLog.addEventListener('click', function() {
