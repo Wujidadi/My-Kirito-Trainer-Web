@@ -10,6 +10,10 @@ if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SE
 }
 else
 {
+    require_once 'lib/helpers.php';
+
+    $title = '令特定玩家轉生';
+
     $file = '/home/wujidadi/workspaces/MyKirito/storage/configs/Players.json';
     $json = file_get_contents($file);
     $playerConfigs = json_decode($json, true);
@@ -41,6 +45,8 @@ else
         'useResetBoss' => false
     ], 448);
 
+    $buttonArea = submitAndBackButtonArea(4, 2);
+
     $page = <<<HTML
     <!DOCTYPE html>
     <html>
@@ -48,7 +54,7 @@ else
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>令特定玩家轉生</title>
+        <title>{$title}</title>
         <style>
             * {
                 box-sizing: border-box;
@@ -89,10 +95,7 @@ else
                 </select>
             </div>
             <textarea id="jsonconf">{$defaultSetting}</textarea>
-            <div id="button-area">
-                <button id="submit">Submit</button>
-                <button id="back">Back</button>
-            </div>
+            {$buttonArea}
         </div>
         <script>
             const nullMark = '{$nullMark}';

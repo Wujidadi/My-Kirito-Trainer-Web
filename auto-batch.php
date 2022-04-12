@@ -12,7 +12,12 @@ else
 {
     require_once 'lib/helpers.php';
 
+    $title = '執行所有自動腳本';
+
+    $style = require_once 'storage/common-style.php';
+
     $output = recoverCliOutput(shell_exec('export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/AutoBatch'));
+    $outputWithButtonArea = outputWithBackButtonArea($output);
 
     $page = <<<HTML
     <!DOCTYPE html>
@@ -21,47 +26,10 @@ else
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>執行自動腳本</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                margin: 0;
-            }
-            pre#command-output {
-                background-color: lavender;
-                color: mediumblue;
-                margin: 8px;
-                padding: 5px;
-                border-radius: 5px;
-                min-height: 25px;
-                white-space: pre-wrap;
-                word-break: break-all;
-            }
-            div#button-area {
-                height: 36px;
-                margin: 8px;
-                padding-top: 5px;
-            }
-            button {
-                width: 100px;
-                height: 25px;
-            }
-        </style>
+        <title>{$title}</title>
+        <style>{$style}</style>
     </head>
-    <body>
-        <pre id="command-output">{$output}</pre>
-        <div id="button-area">
-            <button id="back">Back</button>
-        </div>
-        <script>
-            const btnBack = document.querySelector('#back');
-            btnBack.addEventListener('click', function() {
-                location.href = '/';
-            });
-        </script>
-    </body>
+    <body>{$outputWithButtonArea}</body>
     </html>
     HTML;
 

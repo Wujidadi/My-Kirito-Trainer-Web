@@ -10,8 +10,17 @@ if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SE
 }
 else
 {
+    require_once 'lib/helpers.php';
+
+    $title = '玩家 Token 設定';
+
+    $style = require_once 'storage/textarea-style.php';
+
     $file = '/home/wujidadi/workspaces/MyKirito/storage/configs/Players.json';
     $json = file_get_contents($file);
+
+    $buttonArea = submitAndBackButtonArea(4, 2);
+
     $page = <<<HTML
     <!DOCTYPE html>
     <html>
@@ -19,41 +28,13 @@ else
         <meta charset="UTF-8">
         <meta http-equiv="X-UA-Compatible" content="IE=edge">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <title>玩家 Token 設定</title>
-        <style>
-            * {
-                box-sizing: border-box;
-            }
-            body {
-                margin: 0;
-            }
-            div#conf {
-                margin: 8px auto auto auto;
-                width: calc(100vw - 16px);
-                height: 80vh;
-            }
-            textarea {
-                width: 100%;
-                height: 100%;
-                resize: none;
-            }
-            div#button-area {
-                height: 36px;
-                padding-top: 5px;
-            }
-            button {
-                width: 100px;
-                height: 25px;
-            }
-        </style>
+        <title>{$title}</title>
+        <style>{$style}</style>
     </head>
     <body>
         <div id="conf">
             <textarea id="jsonconf">{$json}</textarea>
-            <div id="button-area">
-                <button id="submit">Submit</button>
-                <button id="back">Back</button>
-            </div>
+            {$buttonArea}
         </div>
         <script>
             const txtConfig = document.querySelector('#jsonconf');
