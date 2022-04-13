@@ -76,6 +76,13 @@ else
             </select>
         </fieldset>
         <fieldset>
+            <button class="feature" id="start">執行特定玩家的自動腳本</button><br />
+            <!-- 玩家：<input type="input" id="player-to-start"> -->
+            玩家：<select class="input" id="player-to-start">
+                {$selectOptionsByPlayer}
+            </select>
+        </fieldset>
+        <fieldset>
             <button class="feature" id="stop">停止特定玩家的自動腳本</button><br />
             <!-- 玩家：<input type="input" id="player-to-stop"> -->
             玩家：<select class="input" id="player-to-stop">
@@ -116,6 +123,8 @@ else
             const btnRun = document.querySelector('#run');
             const btnStatus = document.querySelector('#status');
             const inputPlayerToGetStatus = document.querySelector('#player-to-get-status');
+            const btnStart = document.querySelector('#start');
+            const inputPlayerToStart = document.querySelector('#player-to-start');
             const btnStop = document.querySelector('#stop');
             const inputPlayerToStop = document.querySelector('#player-to-stop');
             const btnReincarnate = document.querySelector('#reincarnate');
@@ -133,6 +142,8 @@ else
             ];
 
             inputPlayerToGetStatus.value = getLocalStorageItemOrNullMark('PlayerToGetStatus');
+
+            inputPlayerToStart.value = getLocalStorageItemOrNullMark('PlayerToStart');
 
             inputPlayerToStop.value = getLocalStorageItemOrNullMark('PlayerToStop');
 
@@ -192,13 +203,33 @@ else
             // });
             function getPlayerStatus() {
                 const playerToGetStatus = inputPlayerToGetStatus.value;
-                if (confirm(`確定查詢玩家【\${playerToGetStatus}】當前的狀態總覽？`)) {
-                    if (playerToGetStatus !== nullMark) {
+                if (playerToGetStatus !== nullMark) {
+                    if (confirm(`確定查詢玩家【\${playerToGetStatus}】當前的狀態總覽？`)) {
                         localStorage.setItem('PlayerToGetStatus', playerToGetStatus);
                         location.href = `get-player-status?p=\${playerToGetStatus}`;
-                    } else {
-                        alert('須選擇玩家暱稱！');
                     }
+                } else {
+                    alert('須選擇玩家暱稱！');
+                }
+            }
+
+            btnStart.addEventListener('click', function() {
+                startAutoProcessesByPlayer();
+            });
+            // inputPlayerToStart.addEventListener('keypress', function(event) {
+            //     if (event.keyCode == 13) {
+            //         startAutoProcessesByPlayer();
+            //     }
+            // });
+            function startAutoProcessesByPlayer() {
+                const playerToStart = inputPlayerToStart.value;
+                if (playerToStart !== nullMark) {
+                    if (confirm(`確定執行玩家【\${playerToStart}】的自動腳本？`)) {
+                        localStorage.setItem('PlayerToStart', playerToStart);
+                        location.href = `start-player-auto-process?p=\${playerToStart}`;
+                    }
+                } else {
+                    alert('須選擇玩家暱稱！');
                 }
             }
 
@@ -212,13 +243,13 @@ else
             // });
             function stopAutoProcessesByPlayer() {
                 const playerToStop = inputPlayerToStop.value;
-                if (confirm(`確定停止玩家【\${playerToStop}】的自動腳本？`)) {
-                    if (playerToStop !== nullMark) {
+                if (playerToStop !== nullMark) {
+                    if (confirm(`確定停止玩家【\${playerToStop}】的自動腳本？`)) {
                         localStorage.setItem('PlayerToStop', playerToStop);
                         location.href = `stop-player-auto-process?p=\${playerToStop}`;
-                    } else {
-                        alert('須選擇玩家暱稱！');
                     }
+                } else {
+                    alert('須選擇玩家暱稱！');
                 }
             }
 

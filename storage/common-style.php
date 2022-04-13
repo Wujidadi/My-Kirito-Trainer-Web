@@ -18,8 +18,8 @@ pre#command-output {
     padding: 5px;
     border-radius: 5px;
     min-height: 25px;
-    white-space: pre-wrap;
-    word-break: break-all;
+    /* white-space: pre-wrap; */
+    /* word-break: break-all; */
 }
 div#button-area {
     height: 36px;
