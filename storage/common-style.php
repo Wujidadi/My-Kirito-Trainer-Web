@@ -20,6 +20,7 @@ pre#command-output {
     min-height: 25px;
     /* white-space: pre-wrap; */
     /* word-break: break-all; */
+    overflow-x: auto;
 }
 div#button-area {
     height: 36px;
