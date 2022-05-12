@@ -33,12 +33,24 @@ else
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>MyKirito Trainer</title>
         <style>
+            body, body * {
+                background-color: #222;
+                color: #ddd;
+            }
             button, input, select {
                 margin-bottom: 5px;
+                background-color: #363636;
+                color: #ddd;
+                border-style: none;
             }
             button.feature {
                 font-size: 16px;
                 width: 250px;
+                border-radius: 6px;
+            }
+            fieldset {
+                border-color: #404040;
+                border-style: solid;
             }
             input {
                 text-align: center;
