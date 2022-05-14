@@ -91,6 +91,10 @@ else
                 width: 100px;
                 height: 25px;
                 border-radius: 6px;
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #424242;
             }
             ::-webkit-scrollbar {
                 width: 13px;

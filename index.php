@@ -43,6 +43,12 @@ else
                 color: #ddd;
                 border-style: none;
             }
+            button {
+                cursor: pointer;
+            }
+            button:hover {
+                background-color: #424242;
+            }
             button.feature {
                 font-size: 16px;
                 width: 250px;

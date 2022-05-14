@@ -28,6 +28,10 @@ div#button-area {
 button {
     width: 100px;
     height: 25px;
+    cursor: pointer;
+}
+button:hover {
+    background-color: #424242;
 }
 CSS;
 $style = indentHTML($style, 4, 2, true);
