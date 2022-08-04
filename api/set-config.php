@@ -18,4 +18,6 @@ $file = '/home/wujidadi/MyKiritoCommands/configs/MovementByPlayer.json';
 $json = json_encode($data, 448);
 file_put_contents($file, $json);
 
+require_once '/var/www/my/MyKiritoTrainer/others/UpdateChallengeOpponents.php';
+
 echo '設定已覆寫！';
