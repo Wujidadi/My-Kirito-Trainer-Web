@@ -1,10 +1,12 @@
 <?php
 
+require_once 'configs/env.php';
 require_once 'storage/token.php';
 
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_USER'] !== HTTP_USERNAME || $_SERVER['PHP_AUTH_PW'] !== HTTP_PASSWORD)
 {
-    header('www-authenticate: Basic realm="Wujidadi\'s MyKirito Trainer"');
+    $basicRealm = BASIC_REALM;
+    header("www-authenticate: Basic realm={$basicRealm}");
     header($_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized');
     exit;
 }
@@ -16,8 +18,9 @@ else
 
     $style = require_once 'storage/common-style.php';
 
+    $home = HOME;
     $player = $_GET['p'];
-    $output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php /home/wujidadi/MyKiritoCommands/StopPlayerAutoProcess --player={$player}"));
+    $output = recoverCliOutput(shell_exec("export LANG=C.UTF-8; php {$home}/workspaces/MyKiritoCommands/StopPlayerAutoProcess --player={$player}"));
     $outputWithButtonArea = outputWithBackButtonArea($output);
 
     $page = <<<HTML

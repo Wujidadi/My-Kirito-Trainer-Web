@@ -1,5 +1,7 @@
 <?php
 
+require_once '../configs/env.php';
+
 if ($_SERVER['REQUEST_METHOD'] !== 'POST')
 {
     header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
@@ -14,10 +16,12 @@ if (!$data)
     exit;
 }
 
-$file = '/home/wujidadi/MyKiritoCommands/configs/MovementByPlayer.json';
+$home = HOME;
+$file = "{$home}/workspaces/MyKiritoCommands/configs/MovementByPlayer.json";
 $json = json_encode($data, 448);
 file_put_contents($file, $json);
 
-require_once '/var/www/my/MyKiritoTrainer/others/UpdateChallengeOpponents.php';
+$www = WWW;
+require_once "{$www}/others/UpdateChallengeOpponents.php";
 
 echo '設定已覆寫！';

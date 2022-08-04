@@ -1,5 +1,6 @@
 <?php
 
+require_once '../configs/env.php';
 require_once '../lib/helpers.php';
 
 if ($_SERVER['REQUEST_METHOD'] !== 'POST')
@@ -16,7 +17,8 @@ if (!$data)
     exit;
 }
 
-$script = '/home/wujidadi/workspaces/MyKirito/cli/Reincarnate.php';
+$home = HOME;
+$script = "{$home}/workspaces/MyKirito/cli/Reincarnate.php";
 $player = $data['player'];
 $set = addslashes(json_encode($data['set'], 320));
 try

@@ -1,10 +1,12 @@
 <?php
 
+require_once 'configs/env.php';
 require_once 'storage/token.php';
 
 if (!isset($_SERVER['PHP_AUTH_USER']) || !isset($_SERVER['PHP_AUTH_PW']) || $_SERVER['PHP_AUTH_USER'] !== HTTP_USERNAME || $_SERVER['PHP_AUTH_PW'] !== HTTP_PASSWORD)
 {
-    header('www-authenticate: Basic realm="Wujidadi\'s MyKirito Trainer"');
+    $basicRealm = BASIC_REALM;
+    header("www-authenticate: Basic realm={$basicRealm}");
     header($_SERVER['SERVER_PROTOCOL'] . ' 401 Unauthorized');
     exit;
 }
@@ -16,7 +18,8 @@ else
 
     $style = require_once 'storage/textarea-style.php';
 
-    $file = '/home/wujidadi/MyKiritoCommands/configs/MovementByPlayer.json';
+    $home = HOME;
+    $file = "{$home}/workspaces/MyKiritoCommands/configs/MovementByPlayer.json";
     $json = file_get_contents($file);
 
     $buttonArea = submitAndBackButtonArea(4, 2);

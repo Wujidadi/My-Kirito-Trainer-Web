@@ -1,7 +1,12 @@
 <?php
 
-$storageDirectory = '/var/www/my/MyKiritoTrainer/storage/AutoChallengeOpponents';
-$oppkeyDirectory = '/home/wujidadi/workspaces/MyKirito/storage/flags/AutoChallenge/oppkeys';
+require_once '../configs/env.php';
+
+$home = HOME;
+$www = WWW;
+
+$storageDirectory = "{$www}/storage/AutoChallengeOpponents";
+$oppkeyDirectory = "{$home}/workspaces/MyKirito/storage/flags/AutoChallenge/oppkeys";
 
 foreach ($data as $player => $settings)
 {

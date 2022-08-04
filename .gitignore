@@ -20,3 +20,4 @@ vendor/
 .vscode/
 
 # For this project
+configs/env.php
