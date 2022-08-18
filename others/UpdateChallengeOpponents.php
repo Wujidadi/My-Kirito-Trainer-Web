@@ -30,6 +30,6 @@ foreach ($data as $player => $settings)
     if ($newChallengeOpponents != $originalChallengeOpponents)
     {
         file_put_contents($challengeOpponentsFile, $newChallengeOpponents);
-        file_put_contents($challengeOpponentKeyFile, 0);
+        file_put_contents($challengeOpponentKeyFile, -1);    // 重置為 -1，實際執行時第一次循環才會加 1 變為 0（從第一個對手開始打）
     }
 }
