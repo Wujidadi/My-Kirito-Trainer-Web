@@ -32,9 +32,9 @@ else
     $selectOptionsByPlayer = preg_replace('/\n$/', '', $selectOptionsByPlayer);
 
     $defaultSetting = json_encode([
-        'character' => 'heathcliff',
+        'character' => '',
         'rattrs' => [
-            'hp' => 10000,
+            'hp' => 0,
             'atk' => 0,
             'def' => 0,
             'stm' => 0,
